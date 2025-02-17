@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Year</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="users: ${allUs}">
+        <td th:text="${users.name}"/>
+        <td th:text="${users.surname}"/>
+        <td th:text="${users.year}"/>
+        <td>
+            <!-- Ссылка на редактирование. Передаем параметр id -->
+            <a th:href="@{'/edit'(id=${users.id})}">Update</a>
+            <!-- Ссылка на удаление. Передаем параметр id. Подтверждение удаления -->
+            <a th:href="@{'/delete'(id=${users.id})}">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+    <form action="/new" method="get">
+        <!-- Другие поля формы -->
+        <button type="submit">Create</button>
+    </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
